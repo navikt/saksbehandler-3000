@@ -34,6 +34,10 @@ function love.load()
       start = love.timer.getTime(),
       left = 60
    }
+   points = {
+      correct = 0,
+      wrong = 0
+   }
 
    application = data[1]
 end
@@ -65,7 +69,7 @@ function love.draw()
    applications.draw(application.application)
 
    -- TODO: Info about score and time left
-   score.draw(time.left)
+   score.draw(points, time.left)
 
    -- TODO: Stamps
    love.graphics.setColor(1, 1, 1)
@@ -75,7 +79,17 @@ end
 
 function love.keypressed(key)
    if key == 'a' then
-   elseif key == 'l' then
+      if application.application.approved then
+	 points.wrong = points.wrong + 1
+      else
+	 points.correct = points.correct + 1
+      end
+   elseif key == 'g' then
+      if application.application.approved then
+	 points.correct = points.correct + 1
+      else
+	 points.wrong = points.wrong + 1
+      end
    end
 end
 
