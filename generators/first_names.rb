@@ -1290,8 +1290,8 @@ FIRST_MALE_NAMES = [
 
 def get_first_name
   if rand.round == 0
-    FIRST_FEMALE_NAMES[rand(FIRST_FEMALE_NAMES.size)]
+    return FIRST_FEMALE_NAMES[rand(FIRST_FEMALE_NAMES.size)], 'female'
   else
-    FIRST_MALE_NAMES[rand(FIRST_MALE_NAMES.size)]
+    return FIRST_MALE_NAMES[rand(FIRST_MALE_NAMES.size)], 'male'
   end
 end

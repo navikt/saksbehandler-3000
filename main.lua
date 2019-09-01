@@ -39,7 +39,7 @@ function love.load()
       wrong = 0
    }
 
-   application = data[1]
+   application = data.next()
 end
 
 function love.update()
@@ -84,14 +84,13 @@ function love.keypressed(key)
       else
 	 points.correct = points.correct + 1
       end
+      application = data.next()
    elseif key == 'g' then
       if application.application.approved then
 	 points.correct = points.correct + 1
       else
 	 points.wrong = points.wrong + 1
       end
+      application = data.next()
    end
-end
-
-function love.mousereleased(x, y, button, istouch, presses)
 end

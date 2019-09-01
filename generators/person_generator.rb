@@ -56,22 +56,27 @@ def gen_address
 end
 
 def create_person
+  first_name, gender = get_first_name
   return {
-    first_name: get_first_name,
+    first_name: first_name,
     last_name: get_last_name,
     work: gen_work,
     birth_date: gen_birth_date,
     person_number: gen_person_number,
     street_address: gen_address,
-    post_number: gen_post_number
+    post_number: gen_post_number,
+    gender: gender
   }
 end
 
-
 if ARGV.size == 1
-  (1...ARGV[0].to_i).each do
-    puts create_person.to_json
+  users = ARGV[0].to_i
+  print '['
+  (0...users).each do |i|
+    print create_person.to_json
+    print ',' unless (i + 1) == users
   end
+  puts ']'
 else
   puts create_person.to_json
 end
