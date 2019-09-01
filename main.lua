@@ -1,89 +1,83 @@
 local utf8 = require("utf8")
+local data = require('data')
+local score = require('score')
 local users = require('users')
+local applications = require('applications')
 
 function love.load()
-   love.window.setFullscreen(true, "desktop")
-   paper = love.graphics.newImage("paper.png")
+   love.window.setMode(1440, 900, {fullscreen=false})
+   --love.window.setFullscreen(true, "desktop")
 
-   approved = 0
-   denied = 0
+   font = love.graphics.newFont("pixelplay.ttf", 26)
+   bigFont = love.graphics.newFont("pixelplay.ttf", 36)
 
-   search = ""
-   no_user = "No user"
-   current_user = nil
+   stamps = {
+      approve = {
+	 image = love.graphics.newImage("images/stempel_godkjent.png"),
+	 x = 200
+      },
+      decline = {
+	 image = love.graphics.newImage("images/stempel_avslag.png")
+      },
+      sharedY = 0
+   }
+   tableImages = {
+      dog = love.graphics.newImage("images/hund.png"),
+      postit1 = love.graphics.newImage("images/postit_gul.png"),
+      postit2 = love.graphics.newImage("images/postit_rosa.png")
+   }
+
+   stamps.sharedY = love.graphics.getHeight() - stamps.approve.image:getHeight() - 20
+   stamps.decline.x = stamps.approve.x + stamps.approve.image:getWidth() + 20
+
+   time = {
+      start = love.timer.getTime(),
+      left = 60
+   }
+
+   application = data[1]
 end
 
 function love.update()
-   if search:len() == 11 then
-      current_user = users[tonumber(search)]
-   else
-      current_user = nil
-   end
+   local timeUsed = (love.timer.getTime() - time.start)
+   time.left = 61 - timeUsed
 end
 
 function love.draw()
-   local eee = 238 / 255
-   love.graphics.setColor(eee, eee, eee)
-   love.graphics.rectangle("fill", love.graphics.getWidth() - 400, 0, 400, love.graphics.getHeight())
+   -- TODO: Table
+   love.graphics.setColor(139 / 255, 69 / 255, 19 / 255)
+   love.graphics.polygon("fill", {
+			    100, 200,
+			    love.graphics.getWidth() - 100, 200,
+			    love.graphics.getWidth() - 25, love.graphics.getHeight(),
+			    25, love.graphics.getHeight()})
+   love.graphics.setColor(.8, .8, .8)
+   love.graphics.rectangle("fill", 100, 0, love.graphics.getWidth() - 200, 200)
+
+   love.graphics.draw(tableImages.postit1, 225, 8, 0)
+   love.graphics.draw(tableImages.dog, 700, 8, 0)
+   love.graphics.draw(tableImages.postit2, 1000, 8)
+
+   -- TODO: Info about person
+   users.draw(application.user)
+
+   -- TODO: The søknad
+   applications.draw(application.application)
+
+   -- TODO: Info about score and time left
+   score.draw(time.left)
+
+   -- TODO: Stamps
    love.graphics.setColor(1, 1, 1)
-   love.graphics.rectangle("fill", love.graphics.getWidth() - 400, 0, 400, 50)
-   love.graphics.setColor(0, 0, 0)
-   love.graphics.print(search, love.graphics.getWidth() - 390, 10, 0, 2)
-   if current_user then
-      love.graphics.print(current_user.name, love.graphics.getWidth() - 390, 60, 0, 2)
-      love.graphics.print(current_user.gender, love.graphics.getWidth() - 390, 100, 0, 2)
-      love.graphics.print(current_user.birthday, love.graphics.getWidth() - 390, 140, 0, 2)
-      love.graphics.print(current_user.address, love.graphics.getWidth() - 390, 180, 0, 2)
-      love.graphics.print(current_user.work, love.graphics.getWidth() - 390, 220, 0, 2)
-   else
-      love.graphics.print(no_user, love.graphics.getWidth() - 390, 60, 0, 2)
-   end
-
-
-   love.graphics.setColor(0, 1, 0)
-   love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 200, 200, 200)
-   love.graphics.setColor(1, 0, 0)
-   love.graphics.rectangle("fill", love.graphics.getWidth() - 600, love.graphics.getHeight() - 200, 200, 200)
-
-   love.graphics.setColor(1, 1, 1)
-   love.graphics.draw(paper, 140, 40, 0, 1)
-
-   love.graphics.setColor(1, 1, 1)
-   love.graphics.print("Approved: " .. approved, 10, 10)
-   love.graphics.print("Denied: " .. denied, 10, 25)
+   love.graphics.draw(stamps.approve.image, stamps.approve.x, stamps.sharedY)
+   love.graphics.draw(stamps.decline.image, stamps.decline.x, stamps.sharedY)   
 end
 
 function love.keypressed(key)
-    if key == "backspace" then
-        -- get the byte offset to the last UTF-8 character in the string.
-        local byteoffset = utf8.offset(search, -1)
-
-        if byteoffset then
-            -- remove the last UTF-8 character.
-            -- string.sub operates on bytes rather than UTF-8 characters, so we couldn't do string.sub(text, 1, -2).
-	   search = string.sub(search, 1, byteoffset - 1)
-        end
-    end
-end
-
-function love.textinput(text)
-   if tonumber(text) ~= nil and not (search:len() >= 11) then
-      search = search .. text
+   if key == 'a' then
+   elseif key == 'l' then
    end
 end
 
 function love.mousereleased(x, y, button, istouch, presses)
-   if button == "l" or button == 1 then
-      if x > 0 and x < 200
-	 and y > (love.graphics.getHeight() - 200) and y < love.graphics.getHeight()
-      then
-	 approved = approved + 1
-      end
-
-      if x > love.graphics.getWidth() - 600 and x < love.graphics.getWidth() - 400
-	 and y > (love.graphics.getHeight() - 200) and y < love.graphics.getHeight()
-      then
-	 denied = denied + 1
-      end
-   end
 end
