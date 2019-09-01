@@ -66,7 +66,7 @@ function love.draw()
    users.draw(application.user)
 
    -- TODO: The søknad
-   applications.draw(application.application)
+   applications.draw(application.type, application.søknad)
 
    -- TODO: Info about score and time left
    score.draw(points, time.left)
@@ -79,14 +79,14 @@ end
 
 function love.keypressed(key)
    if key == 'a' then
-      if application.application.approved then
+      if application.innvilget then
 	 points.wrong = points.wrong + 1
       else
 	 points.correct = points.correct + 1
       end
       application = data.next()
    elseif key == 'g' then
-      if application.application.approved then
+      if application.innvilget then
 	 points.correct = points.correct + 1
       else
 	 points.wrong = points.wrong + 1

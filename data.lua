@@ -9,18 +9,21 @@ data.users = json.decode(contents)
 function data.current()
    local values = {
       user = data.users[data.currentNumber],
-      application = {
-	 type = "sykemelding",
-	 periode =  "1. september - 30. september",
-	 sykmeldingsgrad = "100%",
-	 diagnose = "L87 ICPC-2 - Bursitt/tendinitt/synovitt IKA",
-	 signed = "Skrevet og signert av lege: 20. oktober",
-	 lege = "Lisa Olsen",
-	 mottatt = "Mottatt av NAV: 1. november",
-	 ferie = "Nei",
-	 approved = false
+      innvilget = true,
+      type = "sykemelding",
+      søknad = {
+	 diagnose = "Brukket tommel",
+	 lege = "Lege Legesen",
+	 mottattAvNav = "2019-09-01",
+	 periode = {
+	    from = "2019-08-29",
+	    to = "2019-10-12"
+	 },
+	 signertAvLege = "2019-09-01",
+	 sykemeldingsgrad = "100%"
       }
    }
+
    values.user.image = math.random(10)
 
    return values
