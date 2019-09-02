@@ -39,7 +39,7 @@ function applications.draw(type, application)
    love.graphics.setColor(0, 0, 0)
    love.graphics.print("Søknad", text_x, base_y)
 
-   if type == "sykemelding" then
+   if type == "Sykepenger" then
       love.graphics.print("Sykepenger", text_x, base_y + textPadding)
       love.graphics.setFont(font)
       love.graphics.print(string.format("Periode: %s - %s",

@@ -98,7 +98,7 @@ function love.draw()
    elseif gamestate.current == gamestate.END then
       love.graphics.setFont(hugeFont)
       love.graphics.setColor(255, 255, 255, 255)
-      love.graphics.print(string.format("Du avslo %d riktige søknader", points.correct),
+      love.graphics.print(string.format("Du behandlet %d søknader riktig", points.correct),
 			  50, 50)
       love.graphics.print("Ditt navn?", 80, 120)
       love.graphics.print(string.format("-- %q", points.name),
@@ -152,7 +152,7 @@ end
 
 function startGame()
    time = {
-      duration = 1,
+      duration = 60,
       start = love.timer.getTime(),
       left = 60
    }
