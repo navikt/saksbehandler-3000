@@ -137,6 +137,7 @@ function love.keypressed(key)
    elseif gamestate.current == gamestate.END then
       if key == 'return' then
 	 highscore.add(points.name, points.correct - points.wrong)
+	 highscore.save()
 	 backToMenu()
       elseif key == 'escape' then
 	 backToMenu()
