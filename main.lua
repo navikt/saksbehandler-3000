@@ -1,18 +1,20 @@
 local utf8 = require("utf8")
-local data = require('data')
-local score = require('score')
-local users = require('users')
-local applications = require('applications')
-local highscore = require('sick')
-local gamestate = {
-   MENU = 1,
-   GAME = 2,
-   END = 3
-}
-gamestate.current = gamestate.MENU
 
 function love.load()
    love.window.setMode(1440, 900, {fullscreen=true})
+   data = require('data')
+   score = require('score')
+   users = require('users')
+   menu = require('menu')
+   applications = require('applications')
+   highscore = require('sick')
+
+   gamestate = {
+      MENU = 1,
+      GAME = 2,
+      END = 3
+   }
+   gamestate.current = gamestate.MENU
 
    fontFile = "rm-typerighter-medium.regular.ttf"
    font = love.graphics.newFont(fontFile, 46)
@@ -42,7 +44,9 @@ function love.load()
 end
 
 function love.update()
-   if gamestate.current == gamestate.GAME then
+   if gamestate.current == gamestate.MENU then
+      menu.update()
+   elseif gamestate.current == gamestate.GAME then
       local timeUsed = (love.timer.getTime() - time.start)
       time.left = time.duration - timeUsed
       if time.left <= 0 then
@@ -53,20 +57,7 @@ end
 
 function love.draw()
    if gamestate.current == gamestate.MENU then
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.setFont(hugeFont)
-      love.graphics.print("Saksbehandler", 100, 100)
-      love.graphics.setFont(bigFont)
-      love.graphics.print("3000", 400, 170)
-
-      love.graphics.setFont(bigFont)
-      love.graphics.setColor(1, 1, 1)
-      local base_x = 800
-      for i, score, name in highscore() do
-	 love.graphics.print(string.format("%d - %s", score, name), base_x, i * 40)
-	 if i >= 10 then break end
-      end
-
+      menu.draw()
    elseif gamestate.current == gamestate.GAME then
       -- TODO: Table
       love.graphics.setColor(139 / 255, 69 / 255, 19 / 255)
@@ -104,7 +95,7 @@ function love.draw()
 			  80, 120)
       love.graphics.print("Ditt navn?", 110, 190)
       love.graphics.print(string.format("-- %q", points.name),
-			   140, 260)
+			  140, 260)
    end
 end
 
