@@ -24,13 +24,13 @@ end
 
 
 function data.next()
-   if #data.numbers >= 100 then
+   if #data.numbers >= 400 then
       data.numbers = {}
-      print("We've generated 100 applications, starting over")
+      print("We've generated 400 applications, starting over")
    end
-   local nextNumber = math.random(100)
+   local nextNumber = math.random(400)
    while data.numbers[nextNumber] do
-      nextNumber = math.random(100)
+      nextNumber = math.random(400)
    end
    data.numbers[nextNumber] = true
    data.currentNumber = nextNumber
