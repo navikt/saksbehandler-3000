@@ -33,7 +33,7 @@ function applications.draw(type, application)
    local textPadding = 50
 
    love.graphics.setColor(applications.background)
-   love.graphics.rectangle("fill", base_x, base_y, width - 20, height)
+   love.graphics.rectangle("fill", base_x, base_y, width + 20, height)
 
    love.graphics.setFont(bigFont)
    love.graphics.setColor(0, 0, 0)
