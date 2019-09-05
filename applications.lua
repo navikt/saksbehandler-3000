@@ -58,14 +58,14 @@ function applications.draw(type, application)
 			  text_x, base_y + textPadding * 6)
       if application.land then
       love.graphics.print(string.format("Land: %s", application.land),
-			  text_x, base_y + textPadding * 8)
+			  text_x, base_y + textPadding * 7)
       end
       love.graphics.print(string.format("Mottatt av NAV: %s",
 					applications.convertDate(application.mottattAvNav)),
-			  text_x, base_y + textPadding * 7)
+			  text_x, base_y + textPadding * 8)
       if application.ferie then
       love.graphics.print(string.format("Ferie: %s", application.ferie),
-			  text_x, base_y + textPadding * 8)
+			  text_x, base_y + textPadding * 9)
       end
    end
    love.graphics.pop()
