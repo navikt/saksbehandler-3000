@@ -12,8 +12,7 @@ local gamestate = {
 gamestate.current = gamestate.MENU
 
 function love.load()
-   love.window.setMode(1440, 900, {fullscreen=false})
-   --love.window.setFullscreen(true, "desktop")
+   love.window.setMode(1440, 900, {fullscreen=true})
 
    fontFile = "rm-typerighter-medium.regular.ttf"
    font = love.graphics.newFont(fontFile, 46)
