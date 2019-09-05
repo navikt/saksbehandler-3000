@@ -56,6 +56,10 @@ function applications.draw(type, application)
 			  text_x, base_y + textPadding * 5)
       love.graphics.print(string.format("Lege: %s", application.lege),
 			  text_x, base_y + textPadding * 6)
+      if application.land then
+      love.graphics.print(string.format("Land: %s", application.land),
+			  text_x, base_y + textPadding * 8)
+      end
       love.graphics.print(string.format("Mottatt av NAV: %s",
 					applications.convertDate(application.mottattAvNav)),
 			  text_x, base_y + textPadding * 7)
