@@ -64,7 +64,9 @@ function applications.draw(type, application)
 					applications.convertDate(application.mottattAvNav)),
 			  text_x, base_y + textPadding * 8)
       if application.ferie then
-      love.graphics.print(string.format("Ferie: %s", application.ferie),
+      love.graphics.print(string.format("Ferie: %s - %s",
+					applications.convertDate(application.ferie.from),
+					applications.convertDate(application.ferie.to)),
 			  text_x, base_y + textPadding * 9)
       end
    end
