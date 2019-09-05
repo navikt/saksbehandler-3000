@@ -3,7 +3,7 @@ Saksbehandler 3000
 
 > Et satirisk spill om saksbehandling i NAV
 
-Font PixelPlay av [Aleksander Shevchuk](https://www.dafont.com/aleksander-shevchuk.d2405).
+Font [M Typerighter medium Font](https://www.1001fonts.com/rm-typerighter-medium-font.html) av [p2pnut](https://www.1001fonts.com/users/p2pnut/).
 
 ## Utvikling lokalt
 

@@ -15,9 +15,10 @@ function love.load()
    love.window.setMode(1440, 900, {fullscreen=false})
    --love.window.setFullscreen(true, "desktop")
 
-   font = love.graphics.newFont("pixelplay.ttf", 26)
-   bigFont = love.graphics.newFont("pixelplay.ttf", 36)
-   hugeFont = love.graphics.newFont("pixelplay.ttf", 72)
+   fontFile = "rm-typerighter-medium.regular.ttf"
+   font = love.graphics.newFont(fontFile, 46)
+   bigFont = love.graphics.newFont(fontFile, 66)
+   hugeFont = love.graphics.newFont(fontFile, 122)
 
    highscore.set('highscore.txt', 1000, "NAV", 1)
 
