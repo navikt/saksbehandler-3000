@@ -100,9 +100,11 @@ function love.draw()
       love.graphics.setColor(255, 255, 255, 255)
       love.graphics.print(string.format("Du behandlet %d søknader riktig", points.correct),
 			  50, 50)
-      love.graphics.print("Ditt navn?", 80, 120)
+      love.graphics.print(string.format("Og fikk %d poeng", (points.correct - points.wrong)),
+			  80, 120)
+      love.graphics.print("Ditt navn?", 110, 190)
       love.graphics.print(string.format("-- %q", points.name),
-			   110, 190)
+			   140, 260)
    end
 end
 
