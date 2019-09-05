@@ -1,4 +1,4 @@
-local menu = {images = { }}
+local menu = {images = { }, rotate = 0, rotateSpeed = .015}
 
 local function newImage(firstTime)
    if firstTime then
@@ -42,20 +42,22 @@ function menu.update()
 	 menu.images[i] = {image, x, y, speed}
       end
    end
+   menu.rotate = menu.rotate + menu.rotateSpeed
+   if menu.rotate > .5 or menu.rotate < -.5 then
+      menu.rotateSpeed = -menu.rotateSpeed
+   end
 end
 
 function menu.draw()
-   -- parallax
    for i, image, x, y, speed in menu() do
       love.graphics.draw(image, x, y)
    end
    
-
    love.graphics.setColor(1, 1, 1)
    love.graphics.setFont(hugeFont)
    love.graphics.print("Saksbehandler", 100, 100)
    love.graphics.setFont(bigFont)
-   love.graphics.print("3000", 400, 170)
+   love.graphics.print("3000", 490, 125, menu.rotate, 1, 1, 25)
 
    love.graphics.setFont(bigFont)
    love.graphics.setColor(1, 1, 1)
