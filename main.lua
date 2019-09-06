@@ -69,6 +69,7 @@ function love.draw()
       love.graphics.setColor(.8, .8, .8)
       love.graphics.rectangle("fill", 100, 0, love.graphics.getWidth() - 200, 200)
 
+      love.graphics.setColor(1, 1, 1)
       love.graphics.draw(tableImages.postit1, 225, 8, 0)
       love.graphics.draw(tableImages.dog, 700, 8, 0)
       love.graphics.draw(tableImages.postit2, 1000, 8)
