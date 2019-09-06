@@ -25,11 +25,11 @@ function love.load()
 
    stamps = {
       approve = {
-	 image = love.graphics.newImage("images/stempel_godkjent.png"),
-	 x = 200
+	 image = love.graphics.newImage("images/stempel_godkjent.png")
       },
       decline = {
-	 image = love.graphics.newImage("images/stempel_avslag.png")
+	 image = love.graphics.newImage("images/stempel_avslag.png"),
+	 x = 200
       },
       sharedY = 0
    }
@@ -39,8 +39,8 @@ function love.load()
       postit2 = love.graphics.newImage("images/postit_rosa.png")
    }
 
-   stamps.sharedY = love.graphics.getHeight() - stamps.approve.image:getHeight() - 20
-   stamps.decline.x = stamps.approve.x + stamps.approve.image:getWidth() + 20
+   stamps.sharedY = love.graphics.getHeight() - stamps.decline.image:getHeight() - 20
+   stamps.approve.x = stamps.decline.x + stamps.decline.image:getWidth() + 20
 end
 
 function love.update()
